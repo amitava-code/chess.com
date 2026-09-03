@@ -27,6 +27,10 @@ app.get('/', (req, res) => {
     res.render('index')
 })
 
+io.on('connection', function(uniquesocket){   // single source of truth ( for backend and frontend conection )
+    console.log("connected")
+})
+
 
 server.listen(3000, function () {
     console.log("Listening on port 3000")
