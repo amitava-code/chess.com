@@ -29,6 +29,10 @@ app.get('/', (req, res) => {
 
 io.on('connection', function(uniquesocket){   // single source of truth ( for backend and frontend conection )
     console.log("connected")
+
+    uniquesocket.on('disconnect', function(){
+        console.log('disconeected')
+    })
 })
 
 
