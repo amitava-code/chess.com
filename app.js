@@ -49,6 +49,18 @@ io.on('connection', function(uniquesocket){   // single source of truth ( for ba
     })
 
 
+    uniquesocket.on('move', (move) =>{
+        try{
+
+            if(chess.turn() === 'w' && uniquesocket.id !== players.white) return
+            if(chess.turn() === 'b' && uniquesocket.id !== players.black) return
+
+        }catch(err){
+            console.log(err)
+        }
+    })
+
+
 
 })
 
