@@ -55,6 +55,18 @@ io.on('connection', function(uniquesocket){   // single source of truth ( for ba
             if(chess.turn() === 'w' && uniquesocket.id !== players.white) return
             if(chess.turn() === 'b' && uniquesocket.id !== players.black) return
 
+            const result = chess.move(move)  // move sehi h ki galat batayega
+
+            if(result){
+                currentPlayer = chess.turn()
+                io.emit('move', move)
+                io.emit('boardstate',chess.fen() )  // board ka current state
+            }
+            else{
+                console.log('Inavlid move:', move)
+                uniquesocket.emit("invalidMove",move)
+            }
+
         }catch(err){
             console.log(err)
         }
